@@ -11,23 +11,32 @@ body {
   position: relative;
 }
 .mainContainer .bodyContainer {
-  padding-bottom: 100px;
+  padding-bottom: 80px;
 }
 .mainContainer .footerContainer {
   position: absolute;
   bottom: 0px;
   left: 0px;
   width: 100%;
-  height: 100px;
+  height: 70px;
   background-color: #9b9b9b;
 }
-.quote .header {
+.mainContainer .footerContainer .footerBody {
+  padding-top: 20px;
+}
+.mainContainer .footerContainer .footerBody a {
+  margin-right: 15px;
+  color: #fff;
+}
+.quote .header,
+.page .header {
   font-style: italic;
   font-size: 400%;
   color: #9b9b9b;
 }
-.quote .body {
-  color: #898989;
+.quote .body,
+.page .body {
+  color: #565656;
   background-color: #fff;
   font-size: 170%;
   font-style: italic;
@@ -37,36 +46,53 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.quote .body .quoteMark {
+.quote .body .quoteMark,
+.page .body .quoteMark {
   position: relative;
   left: -20px;
   top: -20px;
   float: left;
+  color: #898989;
 }
-.quote .body .person {
+.quote .body .person,
+.page .body .person {
   text-align: right;
   margin-top: 0.5em;
   margin-bottom: 0.2em;
 }
-.quote .footer {
+.quote .footer,
+.page .footer {
   color: #fff;
   margin-top: 15px;
   heigt: 2em;
 }
-.quote .footer .share {
-  width: 30%;
+.quote .footer .share,
+.page .footer .share {
+  width: 20%;
   float: left;
 }
-.quote .footer .share .shareIcon {
+.quote .footer .share .shareIcon,
+.page .footer .share .shareIcon {
   margin-right: 10px;
 }
-.quote .footer .info {
-  width: 70%;
+.quote .footer .info,
+.page .footer .info {
+  font-size: 80%;
+  width: 80%;
   float: right;
   text-align: right;
 }
-.quote .footer .info .date {
+.quote .footer .info .date,
+.page .footer .info .date {
   margin-right: 10px;
+}
+.nextQuote {
+  text-align: center;
+  margin-top: 5em;
+}
+.page .body {
+  font-size: inherit;
+  font-style: inherit;
 }
 .error {
   padding: 25px;

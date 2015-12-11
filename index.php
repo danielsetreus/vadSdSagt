@@ -9,8 +9,7 @@
 	require __DIR__ . '/app/helpers.php';
 
 	$router->map( 'GET', '/', '\App\Controllers\HomeController#indexAction', 'home');
-	$router->map('GET', '/test', '\App\Controllers\HomeController#indexAction', 'test');
-	$router->map('GET', '/test/[i:id]', '\App\Controllers\HomeController#indexAction', 'testWithId');
+	$router->map('GET', '/about', '\App\Controllers\AboutController#indexAction', 'about');
 
 	$router->map('GET', '/info', function() {
 		phpinfo();

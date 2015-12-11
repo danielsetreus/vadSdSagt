@@ -44,14 +44,14 @@
 					if ( is_callable(array($controller, $action)) )
 						call_user_func_array(array($controller,$action), array($match['params']));
 					else
-						$this->render->error(500, 'Could not call ' . $controller . '#' . $action);
+						$this->getRender()->error(500, 'Could not call ' . $controller . '#' . $action);
 				}
 
 				else
-					$this->render->error(500, 'Matching route found but could not execute action');
+					$this->getRender()->error(500, 'Matching route found but could not execute action');
 			}
 			else
-				$this->render->error(404);
+				$this->getRender()->error(404);
 		}
 
 		private function loadEnv() {
