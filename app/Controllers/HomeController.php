@@ -1,12 +1,22 @@
 <?php
 	
 	namespace App\Controllers;
+	use \App\Render;
 
 	class HomeController {
 
 		public function indexAction($params) {
-			echo "This is the test page";
-			echo "<hr>";
-			print_r($params);
+			$system = getSystem();
+			$db = $system->getDb();
+
+			//self::testDb();
+
+			$render = new Render;
+			$render->render('home');
+		}
+
+		private function testDb() {
+			$db = getSystem()->getDb();
+			$db->query("SELECT * FROM quotes");
 		}
 	}

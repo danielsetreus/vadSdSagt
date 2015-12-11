@@ -1,0 +1,100 @@
+@textColor: #c7c7c7;
+
+@headerColor: #9b9b9b;
+@footerColor: #9b9b9b;
+
+@quoteBodyBg: #fff;
+@quoteBodyBorder: #000000;
+@quoteBodyText: #898989;
+
+html, body {
+	height: 100%;
+}
+body {
+  background-color: #3d3d3d;
+  font-family: 'Lucida Grande', Arial, sans-serif;
+}
+
+.mainContainer {
+	min-height: 100%;
+	position: relative;
+}
+
+.mainContainer .bodyContainer {
+	padding-bottom: 100px;
+}
+
+.mainContainer .footerContainer {
+	position: absolute; bottom: 0px; left: 0px;
+	width: 100%; height: 100px;
+	background-color: @footerColor;
+}
+
+.quote {
+	.header {
+		font-style: italic;
+		font-size: 400%;
+		color: @headerColor;	
+	}
+	.body {
+		.quoteMark {
+			position: relative;
+			left: -20px;
+			top: -20px;
+			float: left;
+		}
+
+		.person {
+			text-align: right;
+			margin-top: 0.5em;
+			margin-bottom: 0.2em;
+		}
+
+
+		color: @quoteBodyText;
+		background-color: @quoteBodyBg;
+		font-size: 170%;
+		font-style: italic;
+
+		padding: 35px;
+		border: 1px solid @quoteBodyBorder;
+
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+
+	.footer {
+		color: @quoteBodyBg;
+		margin-top: 15px;
+		heigt: 2em;
+		.share {
+			width: 30%;
+			float: left;
+			.shareIcon {
+				margin-right: 10px;
+			}
+		}
+		.info {
+			width: 70%;
+			float: right;
+			text-align: right;
+			.date {
+				margin-right: 10px;
+			}
+			.source {
+
+			}
+		}
+	}
+}
+
+
+.error {
+	padding: 25px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #fff;
+	margin-top: 2em;
+}

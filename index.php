@@ -6,11 +6,14 @@
 	$router = new AltoRouter();
 	$system->setRouter($router);
 
-	$router->map( 'GET', '/', function() {
-		echo "This is the Home page finally!";
-	}, 'home' );
+	require __DIR__ . '/app/helpers.php';
 
+	$router->map( 'GET', '/', '\App\Controllers\HomeController#indexAction', 'home');
 	$router->map('GET', '/test', '\App\Controllers\HomeController#indexAction', 'test');
 	$router->map('GET', '/test/[i:id]', '\App\Controllers\HomeController#indexAction', 'testWithId');
+
+	$router->map('GET', '/info', function() {
+		phpinfo();
+	});
 
 	$system->renderRouterMatch();

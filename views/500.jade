@@ -1,0 +1,22 @@
+extends layout
+
+block body
+	div(class="error")
+		h1 500 Server Error
+
+		p
+			| There was an server error when processing your request. Sorry about that. 
+
+		p
+			| The server gave the error:
+			br
+			code= errorMessage
+
+		if(exception)
+			p
+				b Exception:
+
+			p= exception
+
+			pre.well= backtrace
+
