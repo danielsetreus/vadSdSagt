@@ -5,7 +5,7 @@
 
 	class HomeController {
 
-		public function indexAction($params) {
+		public static function indexAction($params) {
 			$system = getSystem();
 			$db = $system->getDb();
 

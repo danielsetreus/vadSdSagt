@@ -5,7 +5,7 @@
 
 	class AboutController {
 
-		public function indexAction($params) {
+		public static function indexAction($params) {
 			$render = new Render;
 			$render->render('about');
 		}
