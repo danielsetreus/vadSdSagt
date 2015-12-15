@@ -62,24 +62,29 @@
 
 			// Match found
 			if ($match) {
-				if(is_callable( $match['target'] ) )
-					call_user_func_array( $match['target'], $match['params'] ); 
-				
-				elseif(list($controller, $action) = explode( '#', $match['target'] )) {
-					if ( is_callable(array($controller, $action)) ) {
-						$MethodChecker = new \ReflectionMethod($controller,$action);
-						if($MethodChecker->isStatic())
-							call_user_func_array(array($controller,$action), array($match['params']));
-						else {
-							call_user_func_array(array(new $controller, $action), array($match['params']));
+				$auth = $this->getAuth();
+				if(in_array($match['name'], $auth->getProtectedRoutes()) && !$auth->isAuthenticated()) {
+					$this->getRender()->error(401);
+				} else {
+					if(is_callable( $match['target'] ) )
+						call_user_func_array( $match['target'], $match['params'] ); 
+					
+					elseif(list($controller, $action) = explode( '#', $match['target'] )) {
+						if ( is_callable(array($controller, $action)) ) {
+							$MethodChecker = new \ReflectionMethod($controller,$action);
+							if($MethodChecker->isStatic())
+								call_user_func_array(array($controller,$action), array($match['params']));
+							else {
+								call_user_func_array(array(new $controller, $action), array($match['params']));
+							}
 						}
+						else
+							$this->getRender()->error(500, 'Could not call ' . $controller . '#' . $action);
 					}
-					else
-						$this->getRender()->error(500, 'Could not call ' . $controller . '#' . $action);
-				}
 
-				else
-					$this->getRender()->error(500, 'Matching route found but could not execute action');
+					else
+						$this->getRender()->error(500, 'Matching route found but could not execute action');
+				}
 			}
 			else
 				$this->getRender()->error(404);

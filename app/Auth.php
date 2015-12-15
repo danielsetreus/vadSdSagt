@@ -14,6 +14,10 @@
 				return false;
 		}
 
+		public function getProtectedRoutes() {
+			return array('admin');
+		}
+
 		public function authenticate($user, $password) {
 			$db = getSystem()->getDb();
 			$userCheck = $db->prepare('SELECT id, user FROM users WHERE user = ? AND password = ?');
