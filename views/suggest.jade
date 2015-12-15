@@ -1,0 +1,46 @@
+extends layout
+
+block body
+	script(src="https://www.google.com/recaptcha/api.js")
+	div.page
+		h1.header Föreslå ett citat
+		div.body
+			p
+				| Har du hittat ett citat från någon SD-politiker som du tycker borde finnas med i vår samling? Tveka inte. Skicka in det nedan. Samtliga citat granskas innan de publiceras.
+			
+			if errors
+				div(class="alert alert-danger")
+					ul!= errors
+
+			div(class="container-fluid")
+				div.row
+					div(class="col-md-8 col-md-offset-2")
+						form(action="/tipsa" method="post")
+							div.form-group
+								label(for="quote") Citat
+								textarea(name="quote" id="quote" rows="4" class="form-control input-lg quoteInput" placeholder="Vad har SD sagt nu?" maxlength="300" minlength="20" required) #{quote}
+
+							div.form-group
+								label(for="who") Vem har sagt detta?
+								input(type="text" name="person" id="who" class="form-control input-lg" placeholder="Jimmie Åkesson" value="#{person}" required)
+
+							div.form-group
+								label(for="what") Titel / Position?
+								input(type="text" name="position" id="what" class="form-control input-lg" placeholder="Partiledare" value="#{position}" required)
+
+							div.form-group
+								label(for="when") När sades detta?
+								input(type="text" name="date" id="when" class="form-control input-lg" placeholder="14 december 2015" value="#{date}" required)
+								span.text-muted Fyll i så exakt tidsangivelse som möjligt. En grov uppskattning är bättre än ingen alls.
+
+							div.form-group
+								label(for="source") Källa
+								input(type="text" name="source" id="source" class="form-control input-lg" placeholder="http://sd.se/..." value="#{source}" required)
+								span.text-muted Hur snappade du upp detta citat? T.ex. en exakt webbplats, länk till ett Twitter-inlägg eller liknande. För att vi ska kunna granska citatet hjälper det oerhört om det är på internet - men det är inget krav.
+
+							div.form-group
+								div(class="g-recaptcha" data-sitekey="#{recaptchaSiteKey}")
+
+							div.form-group
+								button(type="submit" name="doSuggest" class="btn btn-block btn-lg btn-success") Skicka in citatet
+				

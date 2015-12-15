@@ -38,8 +38,6 @@ body {
 .page .body {
   color: #565656;
   background-color: #fff;
-  font-size: 170%;
-  font-style: italic;
   padding: 35px;
   border: 1px solid #000000;
   -webkit-border-radius: 5px;
@@ -54,11 +52,32 @@ body {
   float: left;
   color: #898989;
 }
+.quote .body .quoteText,
 .quote .body .person,
+.page .body .quoteText,
 .page .body .person {
+  font-size: 170%;
+  font-style: italic;
+}
+.quote .body .person p,
+.page .body .person p {
   text-align: right;
-  margin-top: 0.5em;
-  margin-bottom: 0.2em;
+  padding-top: 75px;
+}
+.quote .body img.person,
+.page .body img.person {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  -webkit-border-radius: 75px;
+  -moz-border-radius: 75px;
+}
+.quote .body .comment,
+.page .body .comment {
+  border-top: 1px solid #eee;
+  margin-top: 50px;
+  padding-top: 10px;
+  text-align: center;
 }
 .quote .footer,
 .page .footer {
@@ -88,7 +107,7 @@ body {
 }
 .nextQuote {
   text-align: center;
-  margin-top: 5em;
+  margin-top: 3em;
 }
 .page .body {
   font-size: inherit;
@@ -101,4 +120,13 @@ body {
   border-radius: 5px;
   background-color: #fff;
   margin-top: 2em;
+}
+textarea.quoteInput {
+  background-image: url('/resources/images/quote-left-opac.png');
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  font-weight: bold;
+  font-style: italic;
+  padding-left: 100px;
 }

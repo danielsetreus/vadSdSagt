@@ -6,6 +6,7 @@
 		private $router;
 		private $render;
 		private $db;
+		private $auth;
 
 		public function __construct() {
 			$this->loadEnv();
@@ -32,6 +33,30 @@
 			return $this->db;
 		}
 
+		public function getAuth() {
+			if(!$this->auth)
+				$this->auth = new Auth;
+			return $this->auth;
+		}
+
+		public function render($template, $vars = null) {
+			$middleVars = $this->getMiddleVars();
+			if($vars)
+				$responseVars = array_merge($vars, $middleVars);
+			else
+				$responseVars = $middleVars;
+
+			$this->getRender()->render($template, $responseVars);
+		}
+
+		public function redirect($to) {
+			if(!headers_sent()) {
+				header('Location: ' . $this->router->generate($to));
+				exit;
+			} else
+				$this->getRender()->error(500, 'Trying to redirect but headers has already been sent');
+		}
+
 		public function renderRouterMatch() {
 			$match = $this->router->match();
 
@@ -41,8 +66,14 @@
 					call_user_func_array( $match['target'], $match['params'] ); 
 				
 				elseif(list($controller, $action) = explode( '#', $match['target'] )) {
-					if ( is_callable(array($controller, $action)) )
-						call_user_func_array(array($controller,$action), array($match['params']));
+					if ( is_callable(array($controller, $action)) ) {
+						$MethodChecker = new \ReflectionMethod($controller,$action);
+						if($MethodChecker->isStatic())
+							call_user_func_array(array($controller,$action), array($match['params']));
+						else {
+							call_user_func_array(array(new $controller, $action), array($match['params']));
+						}
+					}
 					else
 						$this->getRender()->error(500, 'Could not call ' . $controller . '#' . $action);
 				}
@@ -52,6 +83,12 @@
 			}
 			else
 				$this->getRender()->error(404);
+		}
+
+		private function getMiddleVars() {
+			$middleVars = array('version' => getenv('VERSION'));
+			$middleVars['authenticated'] = $this->getAuth()->isAuthenticated();
+			return $middleVars;
 		}
 
 		private function loadEnv() {

@@ -1,0 +1,24 @@
+extends layout
+
+block body
+	div.page
+		h1.header Logga in
+		div.body
+			div.container-fluid
+				div.row
+					div(class="col-md-8 col-md-offset-2")
+						if loginError
+							div(class="alert alert-danger")
+								| Inloggningen misslyckades. Kontroller användarnamn och lösenord.
+
+						form(action="/login" method="post")
+							div.form-group
+								label(for="user") Användarnamn
+								input(type="text" name="user" id="user" class="form-control")
+
+							div.form-group
+								label(for="psw") Lösenord:
+								input(type="password" name="password" id="psw" class="form-control")
+
+							div.form-group
+								button(type="submit" class="btn btn-primary" name="doLogin") Logga in

@@ -6,13 +6,7 @@
 	class HomeController {
 
 		public static function indexAction($params) {
-			$system = getSystem();
-			$db = $system->getDb();
-
-			//self::testDb();
-
-			$render = new Render;
-			$render->render('home');
+			getSystem()->render('home');
 		}
 
 		private function testDb() {

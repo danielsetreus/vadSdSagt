@@ -52,19 +52,35 @@ body {
 			float: left;
 			color: lighten(@quoteBodyText, 20%)
 		}
-
-		.person {
-			text-align: right;
-			margin-top: 0.5em;
-			margin-bottom: 0.2em;
+		.quoteText, .person, {
+			font-size: 170%;
+			font-style: italic;
 		}
 
+		.person {
+			p {
+				text-align: right;
+				padding-top: 75px;
+			}
+		}
 
+		img.person {
+				width: 150px;
+				height: 150px;
+				border-radius: 75px;
+				-webkit-border-radius: 75px;
+				-moz-border-radius: 75px;
+		}
+
+		.comment {
+			border-top: 1px solid #eee;
+			margin-top: 50px; padding-top: 10px;
+			text-align: center;
+		}
+	
 		color: @quoteBodyText;
 		background-color: @quoteBodyBg;
-		font-size: 170%;
-		font-style: italic;
-
+	
 		padding: 35px;
 		border: 1px solid @quoteBodyBorder;
 
@@ -101,7 +117,7 @@ body {
 
 .nextQuote {
 	text-align: center;
-	margin-top: 5em;
+	margin-top: 3em;
 }
 
 .page {
@@ -118,4 +134,13 @@ body {
 	border-radius: 5px;
 	background-color: #fff;
 	margin-top: 2em;
+}
+
+textarea.quoteInput {
+	background-image: url('/resources/images/quote-left-opac.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-size: 100px;
+	font-weight: bold; font-style: italic;
+	padding-left: 100px;
 }

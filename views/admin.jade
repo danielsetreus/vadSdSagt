@@ -1,0 +1,35 @@
+extends layout
+
+block body
+	div.page
+		h1.header Inkomna förslag
+		div.body
+			table(class="table table-striped")
+				thead
+					th Citat
+					th Person / Titel
+					th Datum
+					th Inskickat
+					th *
+
+				tbody
+					each quote in squotes
+						tr
+							td
+								small= quote['quote']
+							td
+								small=quote['person']
+								br
+								small=quote['position']
+							td
+								small= quote['quoteDate']
+							td
+								small= quote['formattedSubmitDate']
+							td
+								nobr
+									button(class="btn btn-danger")
+										i(class="fa fa-trash")
+									|  
+									button(class="btn btn-success")
+										i(class="fa fa-plus")
+

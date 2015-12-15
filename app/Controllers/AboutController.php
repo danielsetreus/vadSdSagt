@@ -6,8 +6,7 @@
 	class AboutController {
 
 		public static function indexAction($params) {
-			$render = new Render;
-			$render->render('about');
+			getSystem()->render('about');
 		}
 
 	}
