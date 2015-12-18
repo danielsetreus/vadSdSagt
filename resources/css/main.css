@@ -28,6 +28,14 @@ body {
   margin-right: 15px;
   color: #fff;
 }
+img.person,
+.singleupload img {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  -webkit-border-radius: 75px;
+  -moz-border-radius: 75px;
+}
 .quote .header,
 .page .header {
   font-style: italic;
@@ -53,6 +61,10 @@ body {
   color: #898989;
 }
 .quote .body .quoteText,
+.page .body .quoteText {
+  min-height: 100px;
+}
+.quote .body .quoteText,
 .quote .body .person,
 .page .body .quoteText,
 .page .body .person {
@@ -63,14 +75,6 @@ body {
 .page .body .person p {
   text-align: right;
   padding-top: 75px;
-}
-.quote .body img.person,
-.page .body img.person {
-  width: 150px;
-  height: 150px;
-  border-radius: 75px;
-  -webkit-border-radius: 75px;
-  -moz-border-radius: 75px;
 }
 .quote .body .comment,
 .page .body .comment {
@@ -105,6 +109,9 @@ body {
 .page .footer .info .date {
   margin-right: 10px;
 }
+.singleupload {
+  cursor: pointer;
+}
 .nextQuote {
   text-align: center;
   margin-top: 3em;
@@ -129,4 +136,14 @@ textarea.quoteInput {
   font-weight: bold;
   font-style: italic;
   padding-left: 100px;
+}
+ul.adminMenu {
+  overflow: hidden;
+  list-style-type: none;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+ul.adminMenu li {
+  float: left;
+  margin-right: 20px;
 }

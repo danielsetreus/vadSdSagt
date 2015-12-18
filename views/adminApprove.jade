@@ -1,0 +1,12 @@
+extends layout
+
+block body
+	div.page
+		h1.header Redigera / Publicera förslag
+		div.body
+			form(action="/admin/approve/#{id}" method="post")
+				include ./includes/quoteForm.jade
+
+block addedJs
+	script(src="/resources/js/quoteForm.js")
+	script(src="/resources/js/vendor/jquery.singleuploadimage.js")

@@ -61,20 +61,19 @@
 
 			// Validate position
 			if(strlen($data['position']) < 5 || 
-				strlen($data['position']) > 45 ||
-				$this->validateString($data['position']))
-					$errors[] = "Kontrollera arbetstiteln. Måste vara mellan 5 och 45 tecken. Inga konstiga specialtecken.";
+				strlen($data['position']) > 45)
+					$errors[] = "Kontrollera arbetstiteln. Måste vara mellan 5 och 45 tecken.";
 
 			// Validate date
-			if(strlen($data['date']) < 5 || 
-				strlen($data['date']) > 25 ||
-				$this->validateString($data['date']))
+			if(strlen($data['quoteDate']) < 5 || 
+				strlen($data['quoteDate']) > 25 ||
+				$this->validateString($data['quoteDate']))
 					$errors[] = "Kontrollera datumet. Måste vara mellan 5 och 25 tecken. Inga konstiga specialtecken.";
 
 			// Validate date
 			if(strlen($data['source']) < 5 || 
-				strlen($data['source']) > 125)
-					$errors[] = "Kontrollera källan. Måste vara mellan 5 och 125 tecken.";
+				strlen($data['source']) > 255)
+					$errors[] = "Kontrollera källan. Måste vara mellan 5 och 254 tecken.";
 
 
 			if(sizeof($errors) < 1)
@@ -96,7 +95,7 @@
 		}
 
 		private function validateString($string) {
-			return preg_match('/[\'^£$%&*()}"\'{@#~?><>,|=_+¬-]/', $string);
+			return preg_match('/[\'^£$%&*()}"\'{@#~?><>,|=_+¬]/', $string);
 		}
 
 		private function testDb() {

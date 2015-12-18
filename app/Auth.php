@@ -15,7 +15,7 @@
 		}
 
 		public function getProtectedRoutes() {
-			return array('admin');
+			return array('admin', 'adminApprove');
 		}
 
 		public function authenticate($user, $password) {

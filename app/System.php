@@ -7,10 +7,12 @@
 		private $render;
 		private $db;
 		private $auth;
+		private $middleVars;
 
 		public function __construct() {
 			$this->loadEnv();
 			$this->compileLess();
+			$this->setDefaultMiddleVars();
 		}
 		
 		public function setRouter(\AltoRouter $router) {
@@ -47,6 +49,23 @@
 				$responseVars = $middleVars;
 
 			$this->getRender()->render($template, $responseVars);
+		}
+
+		public function flash($text, $type = 'info') {
+			$this->middleVars['flash'] = array('text' => $text, 'type' => $type);
+			$_SESSION['flashText'] = $text;
+			$_SESSION['flashType'] = $type;
+			return $this;
+		}
+
+		private function getActiveFlash() {
+			if(isset($_SESSION['flashText'])) {
+				$re = array('text' => $_SESSION['flashText'], 'type' => $_SESSION['flashType']);
+				unset($_SESSION['flashText']);
+				unset($_SESSION['flashType']);
+				return $re;
+			} else
+				return false;
 		}
 
 		public function redirect($to) {
@@ -87,13 +106,33 @@
 				}
 			}
 			else
-				$this->getRender()->error(404);
+				$this->routeNotFound();
+		}
+
+		public function isAjaxRequest() {
+			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+				strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+					return true;
+			else
+				return false;
+		}
+
+		private function routeNotFound() {
+			$this->getRender()->error(404, 'Page not found');
 		}
 
 		private function getMiddleVars() {
-			$middleVars = array('version' => getenv('VERSION'));
-			$middleVars['authenticated'] = $this->getAuth()->isAuthenticated();
-			return $middleVars;
+			$flash = $this->getActiveFlash();
+			if($flash)
+				$this->middleVars = array_merge($this->middleVars, array('flash' => $flash));
+
+			return $this->middleVars;
+		}
+
+		private function setDefaultMiddleVars() {
+			$this->middleVars = array();
+			$this->middleVars['version'] = getenv('VERSION');
+			$this->middleVars['authenticated'] = $this->getAuth()->isAuthenticated();
 		}
 
 		private function loadEnv() {

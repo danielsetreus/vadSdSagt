@@ -2,24 +2,25 @@ extends layout
 
 block body
 	div.page
-		h1.header Inkomna förslag
+		h1.header Publicerade citat
 		div.body
 			include ./includes/adminMenu.jade
+
 			table(class="table table-striped")
 				thead
 					th Citat
 					th Person / Titel
 					th Datum
-					th Inskickat
+					th Sparat
 					th *
 
 				tbody
-					each quote in squotes
+					each quote in quotes
 						tr
 							td
 								small= quote['quote']
 							td
-								small=quote['person']
+								small=quote['name']
 								br
 								small=quote['position']
 							td
@@ -28,11 +29,11 @@ block body
 								small= quote['formattedSubmitDate']
 							td
 								nobr
-									a(class="btn btn-danger deleteSuggestion" data-sqId="#{quote['id']}")
+									a(class="btn btn-danger deleteQuote" data-qId="#{quote['quoteId']}")
 										i(class="fa fa-trash")
 									|  
-									a(class="btn btn-success", href="/admin/approve/#{quote['id']}")
+									a(class="btn btn-success", href="/admin/quotes/#{quote['quoteId']}")
 										i(class="fa fa-plus")
 block addedJs
-	script(src="/resources/js/suggestedQuotes.js")
+	script(src="/resources/js/quotes.js")
 

@@ -4,11 +4,15 @@ head
 	title Vad SD Sagt
 
 	link(rel='stylesheet', href='/resources/css/vendor/bootstrap.min.css')
+	link(rel='stylesheet', href='/resources/css/vendor/jquery-ui.min.css')
 	link(rel='stylesheet', href='/resources/css/vendor/font-awesome/css/font-awesome.min.css')
+	link(rel='stylesheet', href='/resources/css/vendor/sweetalert.css')
 	link(rel='stylesheet', href='/resources/css/main.css')
 
-
 body
+	if flash
+		input(type="hidden" id="flashNote" data-text="#{flash['text']}" data-type="#{flash['type']}")
+	
 	div.mainContainer
 		include ./includes/header.jade
 
@@ -17,3 +21,10 @@ body
 				div(class="col-md-8 col-md-offset-2")
 					block body
 		include ./includes/footer.jade
+	
+	script(src="/resources/js/vendor/jquery.js")
+	script(src="/resources/js/vendor/jquery-ui.min.js")
+	script(src="/resources/js/vendor/sweetalert.min.js")
+	script(src="/resources/js/vendor/jquery.noty.packaged.min.js")
+	script(src="/resources/js/main.js")
+	block addedJs

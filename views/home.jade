@@ -8,21 +8,19 @@ block body
 				i(class="quoteMark fa fa-quote-left fa-5x")
 				
 				div(class="quoteText")
-					p Nu har vi alltså: folk som riskerar cancer pga invandringen samt folk som inte får boende pga invandringen
+					p #{quote}
 
 				div(class="container-fluid")
 					div.row
 						div(class="col-md-4")
-							img(style='background-image: url("/resources/images/kent_ekeroth.jpg"); background-position: center center;' class='person')
+							img(style='background-image: url("/resources/images/persons/#{person['image']}"); background-position: center center;' class='person')
 						div(class="col-md-8 person")
 							p
 								i(class="fa fa-angle-double-right")
-								|  Kent Ekeroth, Riksdagsledamot
+								|  #{person['name']}, #{person['position']}
 					div.row
 						div(class="col-md-12 comment")
-							| Och vi som trodde att cancer berodde på okontrollerad celldelning...
-
-
+							| #{comment}
 
 
 		div.row
@@ -32,10 +30,11 @@ block body
 					i(class="shareIcon fa fa-twitter fa-2x")
 					i(class="shareIcon fa fa-link fa-2x")	
 				div.info
-					span.date Dec 2015
+					span.date #{quoteDate}
 					span.source
 						| Källa:  
-						a(href="https://twitter.com/kentekeroth/status/674320508184305664", target="_blank") https://twitter.com/kentekeroth/status/674320508184305664
+						| #{source}
+						// a(href="https://twitter.com/kentekeroth/status/674320508184305664", target="_blank") https://twitter.com/kentekeroth/status/674320508184305664
 
 	div.nextQuote
 		a(href="#", class="btn btn-lg btn-primary") Vad har SD sagt mer?

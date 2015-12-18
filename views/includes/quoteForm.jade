@@ -1,0 +1,56 @@
+:php
+	if(isset($person['name'])) {
+		$image = $person['image'];
+		$position = $person['position'];
+		$person = $person['name'];
+	}
+
+div.container-fluid
+	div.row
+		div.col-md-12
+			div.form-group
+				label(for="quote") Citat
+				textarea(name="quote" id="quote" rows="4" class="form-control input-lg quoteInput" placeholder="Vad har SD sagt nu?" maxlength="300" minlength="20" required) #{quote}
+
+			div.form-group
+				label(for="when") När sades detta?
+				input(type="text" name="quoteDate" id="when" class="form-control input-lg" placeholder="14 december 2015" value="#{quoteDate}" required)
+
+			div.form-group
+				label(for="source") Källa
+				input(type="text" name="source" id="source" class="form-control input-lg" placeholder="http://sd.se/..." value="#{source}" required)
+	div.row
+		div.col-md-6
+			div(class="form-group")
+				label(for="who") Vem har sagt detta?
+				input(type="text" name="person" id="who" class="form-control input-lg" placeholder="Jimmie Åkesson" value="#{person}" required)
+		div.col-md-6
+			div.form-group
+				label(for="what") Titel / Position?
+				input(type="text" name="position" id="what" class="form-control input-lg" placeholder="Partiledare" value="#{position}" required)
+	div.row
+		div.col-md-12
+			label Bild
+	div.row
+		div.col-md-4
+			div.form.group
+				span(id="uploadbox" onClick="singleupload_input.click();" class="singleupload")
+					if(image)
+						img(src="/resources/images/persons/#{image}")
+					else
+						i(class="fa fa-plus-circle fa-5x")
+				input(type="file" id="singleupload_input" style="display:none;" name="img" value="")
+				
+		div.col-md-8
+			div.form-group
+				input(type="text" name="imageName" id="imageName" value="#{image}" readonly class="form-control")
+
+	div.row
+		div.col-md-12
+			div.form-group
+				label(for="quote") Kommentar
+				textarea(name="comment" rows="2" class="form-control" placeholder="Redaktionens kommentar") #{comment}
+
+	div.row
+		div(class="col-md-6 col-md-offset-3")
+			button(type="submit" name="doQuoteSave" class="btn btn-success btn-block") Spara citat

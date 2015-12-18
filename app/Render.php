@@ -13,19 +13,30 @@
 			echo $jade->render('views/' . $file . '.jade', $vars);
 		}
 
+		public function say($message) {
+			echo $message;
+		}
+
 		public function error($err, $msg = null, \Exception $e = null) {
-
-			if(!empty($msg))
-				$msgVars = array('errorMessage' => $msg);
-			else
-				$msgVars = array('errorMessage' => 'Unknown error');
-
-			if(getenv('DEBUG') && $e) {
-				$msgVars['exception'] = $e;
-				$msgVars['backtrace'] = print_r(debug_backtrace(), TRUE);
+			if(getSystem()->isAjaxRequest()) {
+				if(!$e)
+					$this->status($err)->say($msg);
+				else
+					$this->status($err)->say($msg . " (" . $e->getMessage() . ")");
 			}
+			else {	
+				if(!empty($msg))
+					$msgVars = array('errorMessage' => $msg);
+				else
+					$msgVars = array('errorMessage' => 'Unknown error');
 
-			$this->status($err)->render($err, $msgVars);
+				if(getenv('DEBUG') && $e) {
+					$msgVars['exception'] = $e;
+					$msgVars['backtrace'] = print_r(debug_backtrace(), TRUE);
+				}
+
+				$this->status($err)->render($err, $msgVars);
+			}
 		}
 
 	}
