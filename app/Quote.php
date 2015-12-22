@@ -99,7 +99,7 @@
 		}
 
 		public function toArray() {
-			return array(
+			$re =  array(
 				'id' => $this->id,
 				'quote' => $this->quote,
 				'source' => $this->source,
@@ -108,8 +108,15 @@
 				'comment' => $this->comment,
 				'person' => $this->person->toArray(),
 				'loaded' => $this->loaded,
-				'saved' => $this->saved
+				'saved' => $this->saved,
 			);
+			if (filter_var($this->source, FILTER_VALIDATE_URL)) {
+				$re['sourceIsLink'] = true;
+				$re['sourceParts'] = parse_url($this->source);
+			} else
+				$re['sourceIsLink'] = false;
+
+			return $re;
 		}
 
 		private function bindParams($stmt) {
