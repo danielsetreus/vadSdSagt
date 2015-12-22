@@ -98,6 +98,10 @@ img.person,
 .page .footer .share .shareIcon {
   margin-right: 10px;
 }
+.quote .footer .share a,
+.page .footer .share a {
+  color: #ffffff;
+}
 .quote .footer .info,
 .page .footer .info {
   font-size: 80%;
@@ -146,4 +150,7 @@ ul.adminMenu {
 ul.adminMenu li {
   float: left;
   margin-right: 20px;
+}
+.fakeLink {
+  cursor: pointer;
 }
