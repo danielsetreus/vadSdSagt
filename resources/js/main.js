@@ -17,4 +17,12 @@ $(function() {
 		});
 	}
 
+	$('#permLinkOpen').click(function() {
+		var link = $(this).data('url');
+		swal({
+			title: "Länka till citatet",
+			type: 'input',
+			inputValue: link
+		});
+	});
 });
