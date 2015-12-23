@@ -17,6 +17,33 @@ $(function() {
 		});
 	}
 
+	if ($("#quoteId").length) {
+		window.history.pushState("", "", "/" + $('#quoteId').val());
+
+		$(document).keydown(function(e){
+			if (e.keyCode == 37) { 
+				$('#prevButton').click();
+				return false;
+			} else if(e.keyCode == 39) {
+				$('#nextButton').click();
+				return false;
+			}
+		});
+	}
+
+	$('#prevButton').click(function() {
+		console.log("Go to prev");
+		document.getElementById("prevButton").click();
+	});
+	$('#nextButton').click(function() {
+		console.log("Go to next");
+		document.getElementById("nextButton").click();
+	});
+
+	$('#twitterShareOpen').click(function() {
+		twitterShare($(this).data('text'), $(this).data('id'));
+	});
+
 	$('#permLinkOpen').click(function() {
 		var link = $(this).data('url');
 		swal({
@@ -25,4 +52,11 @@ $(function() {
 			inputValue: link
 		});
 	});
+
+	function twitterShare(text, id) {
+		var url = "https://twitter.com/intent/tweet?text=" + text + "&url=http://vadsdsagt.se/" + id + "&hashtags=vadsdsagt";
+		newwindow=window.open(url,'name','height=500,width=550');
+		if (window.focus) { newwindow.focus() }
+		return false;
+	}
 });

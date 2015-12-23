@@ -35,7 +35,6 @@
             if($('#' + settings.inputId).get(0).files[0]) {
                 $this.css('backgroundImage', 'none');
                 var fd = new FormData();
-                console.log($('#' + settings.inputId).get(0).files[0]);
                 fd.append($('#' + settings.inputId).attr('name'), $('#' + settings.inputId).get(0).files[0]);
                 var xhr = new XMLHttpRequest();
                 xhr.addEventListener("load", function(ev) {

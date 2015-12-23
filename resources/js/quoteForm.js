@@ -43,15 +43,15 @@ $(function() {
 		action: '/admin/persons/imageUpload',
 		inputId: 'singleupload_input',
 		onError: function(data) {
-			console.log("Upload failed"); // @TODO: Better error handling
-			console.log(data);
+			//console.log("Upload failed"); // @TODO: Better error handling
+			//console.log(data);
 		}
 		,onSuccess: function(url, data) {
-			console.log(url);
+			//console.log(url);
 			$("#imageName").val(url.name);
 		}
 		,onProgress: function(loaded, total) {
-			console.log(loaded + " av " + total);
+			//console.log(loaded + " av " + total);
 		}
 	});
 
