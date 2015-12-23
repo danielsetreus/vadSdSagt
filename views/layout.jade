@@ -9,6 +9,9 @@ head
 	link(rel='stylesheet', href='/resources/css/vendor/sweetalert.css')
 	link(rel='stylesheet', href='/resources/css/main.css')
 
+	if quote
+		include ./includes/quoteOg.jade
+
 body
 	if flash
 		input(type="hidden" id="flashNote" data-text="#{flash['text']}" data-type="#{flash['type']}")
