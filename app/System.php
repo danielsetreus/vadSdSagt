@@ -133,6 +133,7 @@
 			$this->middleVars = array();
 			$this->middleVars['version'] = getenv('VERSION');
 			$this->middleVars['authenticated'] = $this->getAuth()->isAuthenticated();
+			$this->middleVars['domain'] = $_SERVER['HTTP_HOST'];
 		}
 
 		private function loadEnv() {
