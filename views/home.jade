@@ -1,6 +1,7 @@
 extends layout
 
 block body
+	input(type="hidden" id="quoteId" value="#{id}")
 	div(class="container-fluid quote")
 		div.row
 			h1.header Vad SD Sagt:
@@ -27,7 +28,8 @@ block body
 			div(class="col-md-12 footer")
 				div.share
 					i(class="shareIcon fa fa-facebook fa-2x")
-					i(class="shareIcon fa fa-twitter fa-2x")
+					span(id="twitterShareOpen" data-text="#{quote}" data-id="#{id}" class="fakeLink")
+						i(class="shareIcon fa fa-twitter fa-2x")
 					span(id="permLinkOpen" data-url="http://vadsdsagt.se/#{id}" class="fakeLink")
 						i(class="shareIcon fa fa-link fa-2x")	
 				div.info
@@ -42,4 +44,10 @@ block body
 						// a(href="https://twitter.com/kentekeroth/status/674320508184305664", target="_blank") https://twitter.com/kentekeroth/status/674320508184305664
 
 	div.nextQuote
-		a(href="/", class="btn btn-lg btn-primary") Vad har SD sagt mer?
+		b Vad har SD sagt mer?
+		br
+		a(href="/#{id}/prev" class="btn btn-primary" id="prevButton")
+			i(class="fa fa-arrow-circle-left")
+		a(href="/", class="btn btn-primary") Slumpa
+		a(href="/#{id}/next" class="btn btn-primary" id="nextButton")
+			i(class="fa fa-arrow-circle-right")
