@@ -40,6 +40,10 @@ $(function() {
 		document.getElementById("nextButton").click();
 	});
 
+	$('#facebookShareOpen').click(function() {
+		facebookShare($(this).data('url'));
+	});
+
 	$('#twitterShareOpen').click(function() {
 		twitterShare($(this).data('text'), $(this).data('id'));
 	});
@@ -53,9 +57,16 @@ $(function() {
 		});
 	});
 
+	function facebookShare(shareUrl) {
+		var url = 'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl;
+		newwindow=window.open(url,'FB','height=500,width=550');
+		if (window.focus) { newwindow.focus() }
+		return false;
+	}
+
 	function twitterShare(text, id) {
 		var url = "https://twitter.com/intent/tweet?text=" + text + "&url=http://vadsdsagt.se/" + id + "&hashtags=vadsdsagt";
-		newwindow=window.open(url,'name','height=500,width=550');
+		newwindow=window.open(url,'TW','height=500,width=550');
 		if (window.focus) { newwindow.focus() }
 		return false;
 	}

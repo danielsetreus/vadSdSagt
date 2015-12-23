@@ -27,7 +27,8 @@ block body
 		div.row
 			div(class="col-md-12 footer")
 				div.share
-					i(class="shareIcon fa fa-facebook fa-2x")
+					span(id="facebookShareOpen" data-url="http://#{domain}/#{id}" class="fakeLink")
+						i(class="shareIcon fa fa-facebook fa-2x")
 					span(id="twitterShareOpen" data-text="#{quote}" data-id="#{id}" class="fakeLink")
 						i(class="shareIcon fa fa-twitter fa-2x")
 					span(id="permLinkOpen" data-url="http://vadsdsagt.se/#{id}" class="fakeLink")
