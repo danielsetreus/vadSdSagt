@@ -10,6 +10,8 @@ session_start();
 
 	$router->map( 'GET', '/', '\App\Controllers\HomeController#indexAction', 'home');
 	$router->map( 'GET', '/[i:qId]', '\App\Controllers\HomeController#quoteAction', 'oneQuote');
+	$router->map( 'GET', '/[i:qId]/prev', '\App\Controllers\HomeController#quotePrevAction', 'oneQuotePrev');
+	$router->map( 'GET', '/[i:qId]/next', '\App\Controllers\HomeController#quoteNextAction', 'oneQuoteNext');
 
 	$router->map('GET', '/about', '\App\Controllers\AboutController#indexAction', 'about');
 
