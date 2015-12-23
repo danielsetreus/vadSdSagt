@@ -34,9 +34,26 @@
 			return $this->id;
 		}
 
-		public function load($id) {
+		public function loadPrev($id) {
+			echo "Loading prev";
+			$this->load($id, 'prev');
+		}
+
+		public function loadNext($id) {
+			echo "Loading next";
+			$this->load($id, 'next');
+		}
+
+		public function load($id, $target = null) {
 			$db = getSystem()->getDb();
-			$stmt = $db->prepare("SELECT * FROM quotes WHERE id = ? LIMIT 1");
+			if($target == 'prev')
+				$query = "SELECT * FROM quotes WHERE id = (SELECT max(id) FROM quotes WHERE id < ?)";
+			elseif($target == 'next')
+				$query = "SELECT * FROM quotes WHERE id = (SELECT min(id) FROM quotes WHERE id > ?)";
+			else
+				$query = "SELECT * FROM quotes WHERE id = ? LIMIT 1";
+
+			$stmt = $db->prepare($query);
 			if(!$stmt)
 				throw new \Exception("Failed to prepare load quote (" . $db->errno . "): " . $db->error);
 			$stmt->bind_param("i", $id);
@@ -51,8 +68,12 @@
 				$this->instantiate($res);
 				$this->setPerson($res['person']);
 				return $this;
-			} else
-				throw new \Exception("No such quote");
+			} else {
+				if($target == 'next' || $target == 'prev')
+					$this->load($id);
+				else	
+					throw new \Exception("No such quote (id: " . $id . ", query: " . $query . ")");
+			}
 		}
 
 		public function save() {
