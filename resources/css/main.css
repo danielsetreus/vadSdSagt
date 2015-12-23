@@ -102,6 +102,18 @@ img.person,
 .page .footer .share a {
   color: #ffffff;
 }
+.quote .footer .share .facebookShare:hover,
+.page .footer .share .facebookShare:hover {
+  color: #415E9B;
+}
+.quote .footer .share .twitterShare:hover,
+.page .footer .share .twitterShare:hover {
+  color: #0084b4;
+}
+.quote .footer .share .urlShare:hover,
+.page .footer .share .urlShare:hover {
+  color: #9b9b9b;
+}
 .quote .footer .info,
 .page .footer .info {
   font-size: 80%;

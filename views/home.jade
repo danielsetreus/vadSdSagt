@@ -27,11 +27,11 @@ block body
 		div.row
 			div(class="col-md-12 footer")
 				div.share
-					span(id="facebookShareOpen" data-url="http://#{domain}/#{id}" class="fakeLink")
+					span(id="facebookShareOpen" data-url="http://#{domain}/#{id}" class="fakeLink facebookShare")
 						i(class="shareIcon fa fa-facebook fa-2x")
-					span(id="twitterShareOpen" data-text="#{quote}" data-id="#{id}" class="fakeLink")
+					span(id="twitterShareOpen" data-text="#{quote}" data-id="#{id}" class="fakeLink twitterShare")
 						i(class="shareIcon fa fa-twitter fa-2x")
-					span(id="permLinkOpen" data-url="http://vadsdsagt.se/#{id}" class="fakeLink")
+					span(id="permLinkOpen" data-url="http://vadsdsagt.se/#{id}" class="fakeLink urlShare")
 						i(class="shareIcon fa fa-link fa-2x")	
 				div.info
 					span.date #{quoteDate}
